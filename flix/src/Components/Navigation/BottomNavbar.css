@@ -1,0 +1,9 @@
+
+.wrapper {
+    width: 100%;
+    position: fixed;
+    background-color: rgb(12, 12, 12);
+    z-index: 100;
+    bottom: 0;
+    color: brown;
+}
