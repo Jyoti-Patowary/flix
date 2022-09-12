@@ -4,7 +4,7 @@
 .header {
     width: 100%;
     cursor: pointer;
-    /* position: fixed; */
+    position: fixed;
     display: flex;
     justify-content: center;
     background-color: black;
