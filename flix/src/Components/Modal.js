@@ -54,7 +54,6 @@ export default function TransitionModal({media_type, id, children}) {
       <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
-          
           open={open}
           onClose={handleClose}
           closeAfterTransition
@@ -67,14 +66,48 @@ export default function TransitionModal({media_type, id, children}) {
         <Box sx={style}>
         {content &&
         <>
-        <img src={content.poster_path ? `${imageSizeLarge}/${content.poster_path}`: noContent}
-                  alt={content.name || content.title} className="ContentModal__portrait"/>
-        <img src={content.backdrop_path ? `${imageSizeLarge}/${content.backdrop_path}`: unavailableLandscape}
-                  alt={content.name || content.title} className="ContentModal__landscape"/>
-      
-                  <div>
-                    <DetailedView id={id} media_type={media_type} />
-                  </div>
+           <div className="ContentModal">
+           <img
+                  src={
+                    content.poster_path
+                      ? `${imageSizeLarge}/${content.poster_path}`
+                      : noContent
+                  }
+                  alt={content.name || content.title}
+                  className="ContentModal__portrait"
+            />
+            <img
+                  src={
+                    content.backdrop_path
+                      ? `${imageSizeLarge}/${content.backdrop_path}`
+                      : unavailableLandscape
+                  }
+                  alt={content.name || content.title}
+                  className="ContentModal__landscape"
+                />
+            <div className="ContentModal__about">
+            <span className="ContentModal__title">
+                    {content.name || content.title} (
+                    {(
+                      content.first_air_date ||
+                      content.release_date ||
+                      "-----"
+                    ).substring(0, 4)}
+                    )
+                  </span>
+                  {content.tagline && (
+                    <i className="tagline">{content.tagline}</i>
+                  )}
+                    <span className="ContentModal__description">
+                    {content.overview}
+                  </span>
+
+           
+           <div>
+               <DetailedView id={id} media_type={media_type} />
+           </div>
+           </div>
+           </div>
         </>
         }
         </Box>
