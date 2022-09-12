@@ -1,33 +1,31 @@
 import * as React from 'react';
-import { Link, MemoryRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { Link, MemoryRouter, Route, Routes } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
 
-function Content() {
-  const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page') || '1', 10);
+function Content({ setPage, numOfPages = 10} ) {
+
+  const handlePageChange = (page) => {
+    setPage(page);
+    window.scroll(0, 0);
+  };
   return (
+    <div
+    style={{
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+      marginTop: 10,
+    }}
+  >
     <Pagination
-      page={page}
-      count={10}
-      renderItem={(item) => (
-        <PaginationItem
-          component={Link}
-          to={`/inbox${item.page === 1 ? '' : `?page=${item.page}`}`}
-          {...item}
-        />
-      )}
+     onChange={(e) => handlePageChange(e.target.textContent)}
+      count={numOfPages}
+      hideNextButton
+      hidePrevButton
+     
     />
+    </div>
   );
 }
 
-export default function PaginationLink() {
-  return (
-    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-      <Routes>
-        <Route path="*" element={<Content />} />
-      </Routes>
-    </MemoryRouter>
-  );
-}
+export default Content;
