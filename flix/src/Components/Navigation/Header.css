@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap');
+
+
 .header {
     width: 100%;
     cursor: pointer;
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     justify-content: center;
     background-color: black;
-    font-family: "Montserrat", sans-serif;
-    font-size: 30px;
+    font-family:  'Qwitcher Grypen', cursive;
+    font-size: 70px;
     padding: 15px 0 15px 0;
     box-shadow: 0px 1px 5px black;
     color: white;

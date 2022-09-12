@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import {BottomNavigation, BottomNavigationAction} from "@mui/material"
 import "./BottomNavbar.css"
+import Trending from '../RoutingPages/Trending';
 
 
 
@@ -25,12 +26,8 @@ function BottomNavbar(props) {
     
     return (
        <BottomNavigation  value={val} onChange={(event, newValue) => {setVal(newValue); }} showLabels 
-       sx ={{width: "100%",
-        position: 'fixed',
-        backgroundColor: "black",
-        zIndex: 100,
-        bottom: 0,}}
-       className='wrapper'>
+             sx ={{width: "100%", position: 'fixed', backgroundColor: "black", zIndex: 100, bottom: 0,}}
+             className='wrapper'>
             <BottomNavigationAction style={{ color: "white" }} label="Trending"/>
             <BottomNavigationAction style={{ color: "white" }} label="Movies"/>
             <BottomNavigationAction style={{ color: "white" }} label="Tv Series"/>

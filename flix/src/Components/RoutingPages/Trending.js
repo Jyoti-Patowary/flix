@@ -1,5 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react";
+import TrendingAPIContent from "../TrendingAPIContent";
+
 
 const Trending = () => {
     const [page, setPage] = useState(1);
@@ -20,20 +22,15 @@ useEffect(() => {
 
     return (
         <div>
-        <span className='title'>Trending on Flix</span>
-        <div className="trend">
+        <span style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around", fontSize: "20px", padding: "20px"}}>Trending on Flix</span>
+        <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
         {content &&
-          content.map((c) => (
-            // <SingleContent
-            //   key={c.id}
-            //   id={c.id}
-            //   poster={c.poster_path}
-            //   title={c.title || c.name}
-            //   date={c.first_air_date || c.release_date}
-            //   media_type={c.media_type}
-            //   vote_average={c.vote_average}
-            console.log(c)
-            // />
+       content.map((item) => (
+        <TrendingAPIContent
+          poster={item.poster_path}
+          title={item.title || item.name}
+              media_type={item.media_type}
+            />
           ))}
         </div>
         </div>

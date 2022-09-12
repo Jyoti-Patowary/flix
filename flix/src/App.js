@@ -22,7 +22,7 @@ function App() {
             </Routes>
           </Container>
         </div>
-       
+       <BottomNavbar/>
       </BrowserRouter>
    
   );
