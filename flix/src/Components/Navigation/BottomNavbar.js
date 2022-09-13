@@ -13,7 +13,7 @@ function BottomNavbar(props) {
 
     useEffect(() => {
         if (val === 0){
-            navigate('/')
+            navigate('/trending')
         }
         else if (val === 1) {
             navigate("/movies");

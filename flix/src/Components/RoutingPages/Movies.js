@@ -52,6 +52,7 @@ const Movies = () => {
               poster={item.poster_path}
               title={item.title || item.name}
               media_type="movie"
+              id={item.id}
             />
           ))}
       </div>

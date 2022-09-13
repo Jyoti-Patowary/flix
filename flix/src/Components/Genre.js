@@ -52,8 +52,7 @@ const FilterGenre =({ selectedGenres,
 
   return (
     <div style={{ padding: "60px 0" }}>
-         {selectedGenres.map((genre) => (
-            
+         {selectedGenres.map((genre) => (  
         <Chip
           style={{ margin: 2 }}
           label={genre.name}
@@ -69,7 +68,7 @@ const FilterGenre =({ selectedGenres,
             console.log("selectedGenres map - ",genre)
             ))
             }
-        console.log(selectedGenres);
+     
         {genres.map((genre) => (
           <Chip
             style={{ margin: 2 }}

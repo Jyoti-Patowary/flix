@@ -30,6 +30,7 @@ import TrendingAPIContent from "../TrendingAPIContent";
               poster={item.poster_path}
               title={item.title || item.name}
               media_type="tv"
+              id={item.id}
             />
           ))}
       </div>

@@ -8,6 +8,7 @@ import TvSeries from './Components/RoutingPages/TvSeries';
 import Movies from './Components/RoutingPages/Movies';
 import Search from './Components/RoutingPages/Search';
 import Just from './Components/Just'
+import Detailed from './Components/RoutingPages/Detailed';
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
         <div className="App">
           <Container sx= {{pt: 14, height: "100%"}}>
             <Routes>
-            <Route path="/" element={<Trending/>} exact />
+            <Route path="/trending" element={<Trending/>} />
             <Route path="/movies" element={<Movies/>}/>
             <Route path="/series" element={<TvSeries/>} />
             <Route path="/search" element={<Search/>} />
+            <Route path="/details/:id" element={<Detailed />} />
             </Routes>
           </Container>
           <Just/>
