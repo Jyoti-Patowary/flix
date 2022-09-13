@@ -52,10 +52,12 @@ const Search = () => {
             <TrendingAPIContent
               poster={item.poster_path}
               title={item.title || item.name}
+              id={item.id}
               media_type={type ? "tv" : "movie"}
               >   <ListView value = {type}
               onChange={(event, newValue) => {
                 setType(newValue);
+                
                 
               }}/></TrendingAPIContent>
           ))}
