@@ -19,9 +19,10 @@ function BottomNavbar(props) {
             navigate("/movies");
         } else if (val === 2) {
             navigate("/series");
-        } else if (val === 3) {
-            navigate("/search");
-        }
+        } 
+        // else if (val === 3) {
+        //     navigate("/search");
+        // }
         }, [val]);
     
     return (
@@ -31,7 +32,7 @@ function BottomNavbar(props) {
             <BottomNavigationAction style={{ color: "white" }} label="Trending"/>
             <BottomNavigationAction style={{ color: "white" }} label="Movies"/>
             <BottomNavigationAction style={{ color: "white" }} label="Tv Series"/>
-            <BottomNavigationAction style={{ color: "white" }} label="Search"/>
+            {/* <BottomNavigationAction style={{ color: "white" }} label="Search"/> */}
        </BottomNavigation>
     );
 }

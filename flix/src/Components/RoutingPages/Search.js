@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import TrendingAPIContent from "../TrendingAPIContent";
 import { TextField, Button, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import ListView from "./Trending/ListView";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+const redirectSearch = createContext();
 
 const Search = () => {
     const [type, setType] = useState(0);
@@ -32,6 +35,10 @@ const Search = () => {
         window.scroll(0, 0);
         fetchSearch();
       }, [])
+
+      
+      const navigate = useNavigate();
+
     return (
         <>
         <div className='title'>Search</div>
@@ -44,7 +51,9 @@ const Search = () => {
           ),
         }}/>
 
-        <Button onClick={fetchSearch} variant="contained" style={{ marginLeft: 10, height: "8vh", width: "8vw" }} >
+
+        <redirectSearch.Provider value={{}}></redirectSearch.Provider>
+        <Button onChange={fetchSearch} variant="contained" style={{ marginLeft: 10, height: "8vh", width: "8vw" }} >
             Search
         </Button>
   

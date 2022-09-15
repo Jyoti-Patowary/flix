@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TrendingAPIContent from "../TrendingAPIContent";
+import { useNavigate } from "react-router";
 
  const TvSeries = () => {
     const [page, setPage] = useState(1);
@@ -19,19 +20,50 @@ import TrendingAPIContent from "../TrendingAPIContent";
         fetchSeries();
       }, [page]);
 
+      // let navigate = useNavigate();
+
+      // let handleRedirect = (item,content) => {
+      //   console.log("checking item",item,content);
+      //   navigate(`/details/${item.title.toLowerCase()}`, 
+      //   {
+      //     state: {
+      //       item: item,
+      //       content: content
+      //     }
+      //   }
+      //   )
+      // };
+
+      let navigate2 = useNavigate();
+
+      let handleRedirect2 = (item,content,index) => {
+        // console.log("checking item",item,content);
+        console.log("parentId",item)
+        navigate2(`/details/${item.id}`, 
+        {
+          state: {
+            content: content,
+            index: index,
+            type: 'tv'
+          }
+        }
+        )
+      };
 
     return (
         <>
         <span className='title'>TvSeries</span>
         <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
         {content &&
-          content.map((item) => (
+          content.map((item, index) => (
+            <div onClick={() => handleRedirect2(item,content, index)}>
             <TrendingAPIContent
               poster={item.poster_path}
               title={item.title || item.name}
               media_type="tv"
               id={item.id}
             />
+            </div>
           ))}
       </div>
       </>

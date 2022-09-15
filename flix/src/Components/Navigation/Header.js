@@ -20,92 +20,108 @@ const Header = () => {
 
     const [searchParam] = useState(["Movies", "Tv Series"]);
     
-    const fetchSearch = async () => {
-        try {
-          const { data } = await axios.get(
-            `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=3666a25e61485ebf50f59fec841801e2&language=en-US&query=${search}&page=${page}&include_adult=false`
-          );
-          setContent(data.results);
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      useEffect(() => {
-        window.scroll(0, 0);
-        fetchSearch();
-      }, [])
     
-      const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-          backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-          marginLeft: theme.spacing(1),
-          width: 'auto',
-        },
-      }));
+    // useEffect(()=>{
+    //   var fetchSearch = async () => {
+    //     try {
+    //       const { data } = await axios.get(
+    //         `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=3666a25e61485ebf50f59fec841801e2&language=en-US&query=${search}&page=${page}&include_adult=false`
+    //       );
+    //       setContent(data.results);
+    //       console.log(data);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   };
+
+    // },[search])
+    
+    // var url = `https://api.themoviedb.org/3/search/${type ? "tv" : "movie"}?api_key=3666a25e61485ebf50f59fec841801e2&language=en-US&query=`
+  useEffect(() => {
+    console.log(search);
+    axios
+      .get(`https://api.themoviedb.org/3/search/movie?api_key=3666a25e61485ebf50f59fec841801e2&language=en-US&query=${search}`)
+      .then(function (response) {
+        // setContent(data.results);
+    //       console.log("checking api response axios...........",response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, [search]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // useEffect(() => {
+      //   window.scroll(0, 0);
+      //   fetchSearch();
+      // }, [])
+    
+      // const Search = styled('div')(({ theme }) => ({
+      //   position: 'relative',
+      //   borderRadius: theme.shape.borderRadius,
+      //   backgroundColor: alpha(theme.palette.common.white, 0.15),
+      //   '&:hover': {
+      //     backgroundColor: alpha(theme.palette.common.white, 0.25),
+      //   },
+      //   marginLeft: 0,
+      //   width: '100%',
+      //   [theme.breakpoints.up('sm')]: {
+      //     marginLeft: theme.spacing(1),
+      //     width: 'auto',
+      //   },
+      // }));
       
-      const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }));
+      // const SearchIconWrapper = styled('div')(({ theme }) => ({
+      //   padding: theme.spacing(0, 2),
+      //   height: '100%',
+      //   position: 'absolute',
+      //   pointerEvents: 'none',
+      //   display: 'flex',
+      //   alignItems: 'center',
+      //   justifyContent: 'center',
+      // }));
       
-      const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
-        '& .MuiInputBase-input': {
-          padding: theme.spacing(1, 1, 1, 0),
-          // vertical padding + font size from searchIcon
-          paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-          transition: theme.transitions.create('width'),
-          width: '100%',
-          [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-              width: '20ch',
-            },
-          },
-        },
-      }));
+      // const StyledInputBase = styled(InputBase)(({ theme }) => ({
+      //   color: 'inherit',
+      //   '& .MuiInputBase-input': {
+      //     padding: theme.spacing(1, 1, 1, 0),
+      //     // vertical padding + font size from searchIcon
+      //     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+      //     transition: theme.transitions.create('width'),
+      //     width: '100%',
+      //     [theme.breakpoints.up('sm')]: {
+      //       width: '12ch',
+      //       '&:focus': {
+      //         width: '20ch',
+      //       },
+      //     },
+      //   },
+      // }));
       
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            cursor
-          >
-            Flix
-          </Typography>
+    <>
+        <span className="header">Flix</span>
           {/* <Search  onChange={(e) => setSearch(e.target.value)}> */}
           <Box sx={{display:"flex", justifyContent:"space-between"}}>
-          <TextField variant="outlined" name="search" value={search} onChange={(e) => setSearch(e.target.value)}/>
-          <Button variant="contained" onClick={fetchSearch}><SearchIcon/></Button>
-          </Box> </Toolbar></AppBar>
-            {/* <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper> */}
-            {/* <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              onClick={fetchSearch}
-            /> */}
-        <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
+          {/* <TextField variant="outlined" name="search" value={search} onChange={(e) => setSearch(e.target.value)}/> */}
+          <input type="text" onChange={(e) => setSearch(e.target.value)} />
+          {/* <Button variant="contained" onClick={fetchSearch}><SearchIcon/></Button> */}
+          </Box>
+          
+        {/* <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
         {content &&
           content.map((item) => (
             <TrendingAPIContent
@@ -125,9 +141,9 @@ const Header = () => {
           (type ? <h2>No Series Found</h2> : <h2>No Movies Found</h2>)}
       </div>
       {/* </Search> */}
-       
+        
       
-    </Box>
+    </>
     );
 }
 

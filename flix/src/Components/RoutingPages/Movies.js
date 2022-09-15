@@ -5,6 +5,7 @@ import "./Movies.css"
 import useGenre from "../Configure/GenreAPI";
 import FilterGenre from "../Genre";
 import Content from "../Pagination"
+import { useNavigate } from "react-router";
 
 const Movies = () => {
     const [page, setPage] = useState(1);
@@ -27,10 +28,25 @@ const Movies = () => {
         fetchMovies();
       }, [page, genreforURL]);
     
+      let navigate3 = useNavigate();
+
+      let handleRedirect3 = (item,content,index) => {
+        // console.log("checking item",item,content);
+        console.log(item)
+        navigate3(`/details/${item.id}`, 
+        {
+          state: {
+            content: content,
+            index: index,
+            type: 'movie'
+          }
+        }
+        )
+      };
 
     return (
         <>
-        {console.log("selectedGenres=",selectedGenres)}
+        {/* {console.log("selectedGenres=",selectedGenres)}
         {console.log("setSelectedGenres=",setSelectedGenres)}
         {console.log("genres=",genres)}
         {console.log("setGenres = ",setGenres)}
@@ -43,18 +59,20 @@ const Movies = () => {
         genres={genres}
         setGenres={setGenres}
         setPage={setPage}
-      />
+    /> */}
         <span className='title'>Movies</span>
         <div style={{display: "flex", flexWrap: "wrap", justifyContent: "space-around"}}>
         {content &&
-          content.map((item) => (
+          content.map((item, index) => (
+            <div onClick={() => handleRedirect3(item,content, index)} >
             <TrendingAPIContent
               poster={item.poster_path}
               title={item.title || item.name}
               media_type="movie"
               id={item.id}
             />
-          ))}
+      </div>
+          ))};
       </div>
       </>
     );
