@@ -28,6 +28,9 @@ export default function TransitionModal({ media_type, id, children }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handlePrevious = () => setOpen(true);
+  const handleNext = () => setOpen(true);
+
 
   const fetchData = async () => {
     if (!media_type) return;
@@ -35,7 +38,7 @@ export default function TransitionModal({ media_type, id, children }) {
       const { data } = await Axios.get(
         `/${media_type}/${id}?api_key=3666a25e61485ebf50f59fec841801e2&language=en-US`
       );
-      console.log({ data });
+      // console.log({ data });
       setContent(data);
     } catch (err) {
       console.log({ err });
@@ -62,15 +65,15 @@ export default function TransitionModal({ media_type, id, children }) {
         className="media"
         style={{ cursor: "pointer" }}
         color="inherit"
-        // onClick={handleOpen}
+        onClick={handleOpen}
       >
         {children}
       </div>
-      <Modal
+      {/* <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        // onClose={handleClose}
+        onClose={handleClose}
         closeAfterTransition
         sx={{ display: "flex", justifyContent: "center" }}
       >
@@ -114,12 +117,17 @@ export default function TransitionModal({ media_type, id, children }) {
 
                 <div>
                   <DetailedView id={id} media_type={media_type} />
+                  
+                </div>
+                <div>
+                  <Button onClick={handleNext}>Previous</Button>
+                  <Button onClick={handlePrevious}>Next</Button>
                 </div>
               </>
             )}
           </Box>
         </Box>
-      </Modal>
+      </Modal> */}
     </>
   );
 }

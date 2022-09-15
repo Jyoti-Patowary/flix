@@ -8,7 +8,7 @@ import Trending from '../RoutingPages/Trending/Trending';
 
 function BottomNavbar(props) {
 
-    const [val, setVal] = useState(0);
+    const [val, setVal] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,7 +22,7 @@ function BottomNavbar(props) {
         } else if (val === 3) {
             navigate("/search");
         }
-        }, [val, navigate]);
+        }, [val]);
     
     return (
        <BottomNavigation  value={val} onChange={(event, newValue) => {setVal(newValue); }} showLabels

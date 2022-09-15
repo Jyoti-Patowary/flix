@@ -10,14 +10,15 @@ import Search from './Components/RoutingPages/Search';
 import Just from './Components/Just'
 import Detailed from './Components/RoutingPages/Detailed';
 
-function App() {
+
+const App = () => {
   return (
       <BrowserRouter>
         <Header/>
         <div className="App">
-          <Container sx= {{pt: 14, height: "100%"}}>
+          <Container sx= {{ height: "100%"}}>
             <Routes>
-            <Route path="/trending" element={<Trending/>} />
+            <Route path="/" element={<Trending/>} />
             <Route path="/movies" element={<Movies/>}/>
             <Route path="/series" element={<TvSeries/>} />
             <Route path="/search" element={<Search/>} />
@@ -26,7 +27,7 @@ function App() {
           </Container>
           <Just/>
         </div>
-       <BottomNavbar/>
+       {/* <BottomNavbar/> */}
       </BrowserRouter>
    
   );

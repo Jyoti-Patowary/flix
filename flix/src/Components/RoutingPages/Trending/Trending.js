@@ -18,7 +18,7 @@ const Trending = () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/trending/all/day?api_key=3666a25e61485ebf50f59fec841801e2&page=${page}`
     );
-    console.log({data1 : data});
+    console.log('data1', data);
     setContent(data.results);
     const newArr = data.results;
     // console.log(newArr[2]);
@@ -32,11 +32,17 @@ const Trending = () => {
 
   let navigate = useNavigate();
 
-  let handleRedirect = (item) => {
-    console.log("checking item",item);
-    navigate(`/details/${item.title.toLowerCase()}`, {
-      state: item
-    })};
+  let handleRedirect = (item,content) => {
+    console.log("checking item",item,content);
+    navigate(`/details/${item.title.toLowerCase()}`, 
+    {
+      state: {
+        item: item,
+        content: content
+      }
+    }
+    )
+  };
 
 
   return (
@@ -64,8 +70,8 @@ const Trending = () => {
         }}
       >
         {content &&
-          content.map((item,index) => (
-            <div onClick={() => handleRedirect(item)}>
+          content.map((item) => (
+            <div onClick={() => handleRedirect(item,content)}>
               <TrendingAPIContent
               poster={item.poster_path}
               title={item.title || item.name}
